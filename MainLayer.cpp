@@ -5,13 +5,17 @@
 
 
 bool __fastcall MainLayer::initHook(CCLayer* self, int edx) {
-	CCLabelBMFont* textNode = CCLabelBMFont::create("Mods by Figment", "Resources\\goldFont-uhd.fnt");
-	auto window = CCDirector::sharedDirector()->getWinSize();
+	void* gm = GameManager::getSharedState();
+	if (!GameManager::getGameVariable(gm, "1002")) { // Hide Watermark
+		CCLabelBMFont* textNode = CCLabelBMFont::create("Mods by Figment", "Resources\\goldFont-uhd.fnt");
+		auto window = CCDirector::sharedDirector()->getWinSize();
 
-	textNode->setPosition({ window.width / 2, window.height * 3/4 });
+		textNode->setPosition({ window.width / 2, window.height * 3 / 4 });
 
-	self->addChild(textNode, 5);
+		self->addChild(textNode, 5);
+	}
 	return init(self);
+
 }
 
 
